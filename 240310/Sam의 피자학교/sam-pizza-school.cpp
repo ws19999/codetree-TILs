@@ -19,7 +19,7 @@ void print()
 int main(void)
 {
 	ios::sync_with_stdio(0); cin.tie(0); cout.tie(0);
-	int K,Min=10000,Max=0,ans=0;
+	int K,Min=3000,Max=0,ans=0;
 	cin >> N>>K;
 	for (int i = 0; i < N; i++)
 	{
@@ -177,7 +177,7 @@ int main(void)
 			}
 		}
 		int x = 0;
-		Min = 10000;
+		Min = 3000;
 		Max = 0;
 		for (int j = 3 * N / 4; j < N; j++)
 		{
