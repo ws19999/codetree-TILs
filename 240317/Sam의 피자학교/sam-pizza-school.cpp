@@ -11,7 +11,7 @@ void print()
 	{
 		for (int j = 0; j < N; j++)
 		{
-			cout << bowl[i][j]<<" ";
+			cout << bowl[i][j] << " ";
 		}
 		cout << "\n";
 	}
@@ -33,8 +33,8 @@ void printnext()
 int main(void)
 {
 	ios::sync_with_stdio(0); cin.tie(0); cout.tie(0);
-	int K,Min=10000,Max=0,ans=0;
-	cin >> N>>K;
+	int K, Min = 10000, Max = 0, ans = 0;
+	cin >> N >> K;
 	for (int i = 0; i < N; i++)
 	{
 		cin >> bowl[N - 1][i];
@@ -96,23 +96,23 @@ int main(void)
 				{
 					int nextx = h + dx[k];
 					int nexty = w + dy[k];
-					if (nextx<0 || nextx>N || nexty<0 || nexty>N)continue;
+					if (nextx<0 || nextx>=N || nexty<0 || nexty>=N)continue;
 					if (!bowl[nextx][nexty])continue;
 					if (bowl[h][w] > bowl[nextx][nexty])
 					{
-						nextbowl[h][w]-=(bowl[h][w] - bowl[nextx][nexty])/5;
+						nextbowl[h][w] -= (bowl[h][w] - bowl[nextx][nexty]) / 5;
 						nextbowl[nextx][nexty] += (bowl[h][w] - bowl[nextx][nexty]) / 5;
 					}
-					else if(bowl[h][w]<bowl[nextx][nexty])
+					else if (bowl[h][w] < bowl[nextx][nexty])
 					{
-						nextbowl[h][w] += (-bowl[h][w] +bowl[nextx][nexty]) / 5;
+						nextbowl[h][w] += (-bowl[h][w] + bowl[nextx][nexty]) / 5;
 						nextbowl[nextx][nexty] -= (-bowl[h][w] + bowl[nextx][nexty]) / 5;
 					}
 				}
 				i++;
 			}
 		}
-		while (i < N-1)
+		while (i < N - 1)
 		{
 			int nextx = N - 1;
 			int nexty = i + 1;
@@ -121,7 +121,7 @@ int main(void)
 				nextbowl[N - 1][i] -= (bowl[N - 1][i] - bowl[nextx][nexty]) / 5;
 				nextbowl[nextx][nexty] += (bowl[N - 1][i] - bowl[nextx][nexty]) / 5;
 			}
-			else if(bowl[N-1][i]<bowl[nextx][nexty])
+			else if (bowl[N - 1][i] < bowl[nextx][nexty])
 			{
 				nextbowl[N - 1][i] += (-bowl[N - 1][i] + bowl[nextx][nexty]) / 5;
 				nextbowl[nextx][nexty] -= (-bowl[N - 1][i] + bowl[nextx][nexty]) / 5;
@@ -140,10 +140,11 @@ int main(void)
 			}
 		}
 		while (i < N)
-	{
-		bowl[N - 1][i] += nextbowl[N - 1][i];
-		i++;
-	}
+		{
+			bowl[N - 1][i] += nextbowl[N - 1][i];
+			nextbowl[N - 1][i] = 0;
+			i++;
+		}
 		//print();
 		//그림 8
 		i = 0;
@@ -151,20 +152,24 @@ int main(void)
 		{
 			for (int h = N - 1; h > N - 1 - high; h--)
 			{
-				if (h == N - 1 && i == w)continue;
+				if (h == N - 1 && i == w)
+				{
+					i++;
+					continue;
+				}
 				bowl[N - 1][i] = bowl[h][w];
 				bowl[h][w] = 0;
 				i++;
 			}
 		}
-
+		//print();
 		//그림 9번
 		for (i = 0; i < N / 2; i++)
 		{
 			bowl[N - 2][N - 1 - i] = bowl[N - 1][i];
 			bowl[N - 1][i] = 0;
 		}
-		
+		//print();
 		//그림 10번
 		for (i = N / 2; i < 3 * N / 4; i++)
 		{
@@ -174,6 +179,7 @@ int main(void)
 				bowl[j][i] = 0;
 			}
 		}
+		//print();
 		for (i = N - 4; i <= N - 1; i++)
 		{
 			for (int j = 3 * N / 4; j <= N - 1; j++)
@@ -189,7 +195,7 @@ int main(void)
 						nextbowl[i][j] -= (bowl[i][j] - bowl[nextx][nexty]) / 5;
 						nextbowl[nextx][nexty] += (bowl[i][j] - bowl[nextx][nexty]) / 5;
 					}
-					else if(bowl[i][j]<bowl[nextx][nexty])
+					else if (bowl[i][j] < bowl[nextx][nexty])
 					{
 						nextbowl[i][j] += (-bowl[i][j] + bowl[nextx][nexty]) / 5;
 						nextbowl[nextx][nexty] -= (-bowl[i][j] + bowl[nextx][nexty]) / 5;
@@ -197,6 +203,7 @@ int main(void)
 				}
 			}
 		}
+		//printnext();
 		int x = 0;
 		Min = 10000;
 		Max = 0;
@@ -208,7 +215,11 @@ int main(void)
 				Min = min(Min, bowl[i][j]);
 				Max = max(Max, bowl[i][j]);
 				nextbowl[i][j] = 0;
-				if (i == N - 1 && j == x)continue;
+				if (i == N - 1 && j == x)
+				{
+					x++;
+					continue;
+				}
 				bowl[N - 1][x++] = bowl[i][j];
 				bowl[i][j] = 0;
 			}
