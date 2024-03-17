@@ -1,39 +1,13 @@
 #include <iostream>
 using namespace std;
-int bowl[100][100] = { 0 };
-int nextbowl[100][100] = { 0 };
-int N;
+int bowl[100][100];
+int nextbowl[100][100];
 int dx[] = { -1,0,1,0 };
 int dy[] = { 0,-1,0,1 };
-void print()
-{
-	for (int i = 0; i < N; i++)
-	{
-		for (int j = 0; j < N; j++)
-		{
-			cout << bowl[i][j] << " ";
-		}
-		cout << "\n";
-	}
-	cout << "\n";
-}
-
-void printnext()
-{
-	for (int i = 0; i < N; i++)
-	{
-		for (int j = 0; j < N; j++)
-		{
-			cout << nextbowl[i][j] << " ";
-		}
-		cout << "\n";
-	}
-	cout << "\n";
-}
 int main(void)
 {
 	ios::sync_with_stdio(0); cin.tie(0); cout.tie(0);
-	int K, Min = 10000, Max = 0, ans = 0;
+	int N,K, Min = 10000, Max = 0, ans = 0;
 	cin >> N >> K;
 	for (int i = 0; i < N; i++)
 	{
@@ -43,7 +17,6 @@ int main(void)
 	}
 	while (true)
 	{
-		//cout << Max - Min << "\n";
 		if (Max - Min <= K)break;
 		//그림 2
 		for (int i = 0; i < N; i++)
@@ -54,7 +27,6 @@ int main(void)
 		bowl[N - 2][1] = bowl[N - 1][0];
 		bowl[N - 1][0] = 0;
 
-		//print();
 		int left = 1;
 		int bottom = N - 1;
 		int high = 2;
@@ -67,8 +39,6 @@ int main(void)
 				{
 					for (int w = left + cnt - 1 + high; w >= left + cnt; w--)
 					{
-						//h 랑 관련 : left,cnt
-						//w 랑 관련 : high
 						int H = N + left + cnt - w - 1;
 						int W = h + cnt - N + 1 + left;
 						bowl[h][w] = bowl[H][W];
@@ -82,11 +52,8 @@ int main(void)
 				high = temp + 1;
 				if (bottom - cnt - high < 0)break;
 			}
-		}
-		//print();
-
+        }
 		//그림 7
-		// 동시에 보내기
 		int i = 0;
 		for (int w = left; w < left + cnt; w++)
 		{
@@ -128,7 +95,6 @@ int main(void)
 			}
 			i++;
 		}
-		//printnext();
 		i = 0;
 		for (int w = left; w < left + cnt; w++)
 		{
@@ -145,7 +111,6 @@ int main(void)
 			nextbowl[N - 1][i] = 0;
 			i++;
 		}
-		//print();
 		//그림 8
 		i = 0;
 		for (int w = left; w < left + cnt; w++)
@@ -162,14 +127,12 @@ int main(void)
 				i++;
 			}
 		}
-		//print();
 		//그림 9번
 		for (i = 0; i < N / 2; i++)
 		{
 			bowl[N - 2][N - 1 - i] = bowl[N - 1][i];
 			bowl[N - 1][i] = 0;
 		}
-		//print();
 		//그림 10번
 		for (i = N / 2; i < 3 * N / 4; i++)
 		{
@@ -179,7 +142,6 @@ int main(void)
 				bowl[j][i] = 0;
 			}
 		}
-		//print();
 		for (i = N - 4; i <= N - 1; i++)
 		{
 			for (int j = 3 * N / 4; j <= N - 1; j++)
@@ -203,7 +165,6 @@ int main(void)
 				}
 			}
 		}
-		//printnext();
 		int x = 0;
 		Min = 10000;
 		Max = 0;
@@ -224,7 +185,6 @@ int main(void)
 				bowl[i][j] = 0;
 			}
 		}
-		//print();
 		ans++;
 	}
 	cout << ans;
