@@ -188,7 +188,7 @@ int main(void)
 				{
 					int nextx = i + dx[k];
 					int nexty = j + dy[k];
-					if (nextx<0 || nextx>N || nexty<0 || nexty>N)continue;
+					if (nextx<0 || nextx>=N || nexty<0 || nexty>=N)continue;
 					if (!bowl[nextx][nexty])continue;
 					if (bowl[i][j] > bowl[nextx][nexty])
 					{
