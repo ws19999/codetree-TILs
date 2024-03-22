@@ -1,7 +1,7 @@
 #include <iostream>
 using namespace std;
 int main() {
-    int table[91];
+    long long table[91];
     int n;
     cin>>n;
     table[1]=1;
