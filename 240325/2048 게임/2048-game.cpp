@@ -150,7 +150,6 @@ int main() {
             ans = max(ans,map[i][j]);
         }
     }
-    ans = map[0][0];
     dfs(5, map);
     cout << ans;
     return 0;
