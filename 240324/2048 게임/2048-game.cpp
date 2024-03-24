@@ -1,6 +1,6 @@
 #include <iostream>
 using namespace std;
-int n, ans = 0;
+int n, ans;
 void dfs(int num, int map[20][20])
 {
     int t[20][20];
@@ -157,6 +157,7 @@ int main() {
             cin >> map[i][j];
         }
     }
+    ans = map[0][0];
     dfs(5, map);
     cout << ans;
     return 0;
