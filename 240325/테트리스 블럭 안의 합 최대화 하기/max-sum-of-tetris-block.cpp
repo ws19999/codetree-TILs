@@ -40,8 +40,8 @@ int main() {
             check[i][j]=false;
             if(i+2<n && j+1<m)ans=max(ans,map[i][j]+map[i+1][j]+map[i+2][j]+map[i+1][j+1]);
             if(i+1<n && j+2<m)ans=max(ans,map[i][j]+map[i][j+1]+map[i][j+2]+map[i+1][j+1]);
-            if(i+2<n && j-1>0)ans=max(ans,map[i][j]+map[i+1][j]+map[i+2][j]+map[i+1][j-1]);
-            if(i-1>0 && j+2<m)ans=max(ans,map[i][j]+map[i][j+1]+map[i][j+2]+map[i-1][j+1]);
+            if(i+2<n && j-1>=0)ans=max(ans,map[i][j]+map[i+1][j]+map[i+2][j]+map[i+1][j-1]);
+            if(i-1>=0 && j+2<m)ans=max(ans,map[i][j]+map[i][j+1]+map[i][j+2]+map[i-1][j+1]);
         }
     }
     cout<<ans;
