@@ -67,7 +67,7 @@ int main() {
         for(int j=0;j<m;j++)
         {
             if(j+3<m)block11(i,j);
-            if(j+3<n)block12(i,j);
+            if(i+3<n)block12(i,j);
             if(i+1<n && j+1<m)block2(i,j);
             if(i-2>0 && j-1>0)block31(i,j);
             if(i-1>0 && j+2<m)block32(i,j);
