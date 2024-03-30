@@ -40,8 +40,6 @@ int main(void)
         Blue=dq.front().second;
         dq.pop_front();
         if(Red.count==10)continue;
-        bool R;
-        //cout<<Red.x<<" "<<Red.y<<" "<<Blue.x<<" "<<Blue.y<<" "<<Red.count<<"\n";
         candy nextred,nextblue;
         nextred.x=Red.x;
         nextred.y=Red.y;
@@ -50,31 +48,17 @@ int main(void)
         nextblue.y=Blue.y;
         for(int i=0;i<4;i++)
         {
+            bool R=false;
             Red.x=nextred.x;
             Red.y=nextred.y;
             Red.count=nextred.count;
             Blue.x=nextblue.x;
             Blue.y=nextblue.y;
-            if(i==0)
-            {
-                if(Red.x<Blue.x)R=true;
-                else R=false;
-            }
-            else if(i==1)
-            {
-                if(Red.y<Blue.y)R=true;
-                else R=false;
-            }
-            else if(i==2)
-            {
-                if(Red.x>Blue.x)R=true;
-                else R=false;
-            }
-            else
-            {   
-                if(Red.y>Blue.y)R=true;
-                else R=false;
-            }
+            if(i==0 && Red.x<Blue.x)R=true;
+            else if(i==1 && Red.y<Blue.y)R=true;
+            else if(i==2 && Red.x>Blue.x)R=true;
+            else if(i==3 && Red.y>Blue.y)R=true;
+            Red.count++;
             if(R)
             {
                 while(true)
@@ -109,13 +93,11 @@ int main(void)
                     else break;
                 }
                 if(map[Blue.x][Blue.y]=='O')continue;
-                Red.count++;
                 if(map[Red.x][Red.y]=='O')
                 {
                     cout<<Red.count;
                     return 0;
                 }
-                dq.push_back(make_pair(Red,Blue));
             }
             else
             {
@@ -151,14 +133,13 @@ int main(void)
                     }
                     else break;
                 }
-                Red.count++;
                 if(map[Red.x][Red.y]=='O')
                 {
                     cout<<Red.count;
                     return 0;
                 }
-                dq.push_back(make_pair(Red,Blue));
             }
+            dq.push_back(make_pair(Red,Blue));
         }
     }
     cout<<-1;
