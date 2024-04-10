@@ -24,7 +24,7 @@ void dfs(int depth)
         ans=min(ans,depth);
         return;
     }
-    if(depth==3)return;
+    if(depth==3 || depth==ans)return;
     for(int i=1;i<=h;i++)
     {
         for(int j=1;j<n;j++)
