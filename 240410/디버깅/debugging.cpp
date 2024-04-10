@@ -4,35 +4,34 @@ int ladder[31][11];
 int n,m,h,ans=4;
 void dfs(int depth)
 {
-    if(depth==4)return;
+    bool possible=true;
+    for(int i=1;i<=n;i++)
+    {
+        int num=i;
+        for(int j=1;j<=h;j++)
+        {
+            if(ladder[j][num-1])num--;
+            else if(ladder[j][num])num++;
+        }
+        if(num!=i)
+        {
+            possible=false;
+            break;
+        }
+    }
+    if(possible)
+    {
+        ans=min(ans,depth);
+        return;
+    }
+    if(depth==3)return;
     for(int i=1;i<=h;i++)
     {
         for(int j=1;j<n;j++)
         {
             if(!ladder[i][j] && !ladder[i][j-1])
             {
-                bool possible=true;
                 ladder[i][j]=1;
-                for(int k=1;k<=n;k++)
-                {
-                    int num=k;
-                    for(int l=1;l<=h;l++)
-                    {
-                        if(ladder[l][num-1])num--;
-                        else if(ladder[l][num])num++;
-                    }
-                    if(k!=num)
-                    {
-                        possible=false;
-                        break;
-                    }
-                }
-                if(possible)
-                {
-                    ans=min(ans,depth);
-                    ladder[i][j]=0;
-                    return;
-                }
                 dfs(depth+1);
                 ladder[i][j]=0;
             }
@@ -47,7 +46,7 @@ int main() {
         cin>>a>>b;
         ladder[a][b]=1;
     }
-    dfs(1);
+    dfs(0);
     if(ans==4)cout<<-1;
     else cout<<ans;
     return 0;
