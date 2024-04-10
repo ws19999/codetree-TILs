@@ -4,6 +4,7 @@ int ladder[31][11];
 int n,m,h,ans=4;
 void dfs(int depth)
 {
+    if(depth==ans)return;
     bool possible=true;
     for(int i=1;i<=n;i++)
     {
@@ -24,7 +25,7 @@ void dfs(int depth)
         ans=min(ans,depth);
         return;
     }
-    if(depth==3 || depth==ans)return;
+    if(depth==3)return;
     for(int i=1;i<=h;i++)
     {
         for(int j=1;j<n;j++)
