@@ -6,8 +6,6 @@ int table[300];
 int dx[4] = { -1,0,1,0 };
 int dy[4] = { 0,-1,0,1 };
 bool check[5][5] = { false };
-bool find = false;
-int tresures = 0;
 void dfs(int x, int y, int num)
 {
     map[x][y] = 0;
@@ -56,7 +54,6 @@ int main() {
                     map[i + 1][j + 1] = b;
                     map[i][j + 1] = a;
                     int tempprice = 0;
-                    
                     for (int l = 0; l < 5; l++)
                     {
                         for (int m = 0; m < 5; m++)
@@ -98,7 +95,6 @@ int main() {
                             }
                         }
                     }
-                    
                     if (tempprice > price)
                     {
                         price = tempprice;
@@ -117,16 +113,16 @@ int main() {
                         }
                         else if (k == angle)
                         {
-                            if (i < turnx)
+                            if (j < turny)
                             {
                                 price = tempprice;
                                 angle = k;
                                 turnx = i;
                                 turny = j;
                             }
-                            else if (turnx == i)
+                            else if (turny == j)
                             {
-                                if (j < turny)
+                                if (i < turnx)
                                 {
                                     price = tempprice;
                                     angle = k;
