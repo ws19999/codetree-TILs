@@ -1,10 +1,10 @@
 #include <iostream>
 #include <climits>
 using namespace std;
-int map[72][72];
+int map[73][73];
 int dx[] = { -1,0,1,0 };
 int dy[] = { 0,1,0,-1 };
-bool check[72][72];
+bool check[73][73];
 int maximum = 0;
 int R, C, K, ans = 0;
 void dfs(int x, int y)
@@ -43,18 +43,10 @@ int main(void)
 		int c, d;
 		cin >> c >> d;
 		int x = 0, y = c;
-		bool done = false;
 		while (true)
 		{
-			if (x == R - 1)
-			{
-				done = true;
-				break;
-			}
-			if (!map[x + 1 + 1][y] && !map[x + 1][y - 1] && !map[x + 1][y + 1])
-			{
-				x += 1;
-			}
+			if (x == R - 1)break;
+			if (!map[x + 1 + 1][y] && !map[x + 1][y - 1] && !map[x + 1][y + 1]) x += 1;
 			else
 			{
 				if (y > 2 && !map[x][y - 2] && !map[x - 1][y - 1] && !map[x + 1][y - 1] && !map[x+2][y-1] && !map[x+1][y-2])
@@ -71,31 +63,24 @@ int main(void)
 						d = (d + 1) % 4;
 						x += 1;
 					}
-					else
-					{
-						done = true;
-						break;
-					}
+					else break;
 				}
 			}
 		}
 		if (x <= 1)
 		{
-			for (int i = 1; i <= R; i++)
+			for (int a = 1; a <= R; a++)
 			{
-				for (int j = 1; j <= C; j++)
+				for (int b = 1; b <= C; b++)
 				{
-					map[i][j] = 0;
+					map[a][b] = 0;
 				}
 			}
 			continue;
 		}
 		maximum = 0;
 		map[x][y] = i;
-		map[x][y - 1] = i;
-		map[x - 1][y] = i;
-		map[x][y + 1] = i;
-		map[x + 1][y] = i;
+		for (int k = 0; k < 4; k++)map[x + dx[k]][y + dy[k]] = i;
 		map[x + dx[d]][y + dy[d]] = INT_MAX-i;
 		check[x][y] = true;
 		dfs(x, y);
