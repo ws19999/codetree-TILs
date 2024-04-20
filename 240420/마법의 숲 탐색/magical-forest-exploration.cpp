@@ -1,10 +1,10 @@
 #include <iostream>
 #include <climits>
 using namespace std;
-int map[73][73];
+int map[74][73];
 int dx[] = { -1,0,1,0 };
 int dy[] = { 0,1,0,-1 };
-bool check[73][73];
+bool check[74][73];
 int maximum = 0;
 int R, C, K, ans = 0;
 void dfs(int x, int y)
@@ -14,7 +14,7 @@ void dfs(int x, int y)
 	{
 		int nextx = x + dx[k];
 		int nexty = y + dy[k];
-		if (nextx >= 1 && nexty >= 1 && nextx <= R && nexty <= C)
+		if (nextx >= 1 && nexty >= 1 && nextx <= R+2 && nexty <= C)
 		{
 			if (!check[nextx][nexty])
 			{
@@ -45,7 +45,7 @@ int main(void)
 		int x = 0, y = c;
 		while (true)
 		{
-			if (x == R - 1)break;
+			if (x == R + 1)break;
 			if (!map[x + 1 + 1][y] && !map[x + 1][y - 1] && !map[x + 1][y + 1]) x += 1;
 			else
 			{
@@ -67,9 +67,9 @@ int main(void)
 				}
 			}
 		}
-		if (x <= 1)
+		if (x <= 3)
 		{
-			for (int a = 1; a <= R; a++)
+			for (int a = 1; a <= R+2; a++)
 			{
 				for (int b = 1; b <= C; b++)
 				{
@@ -85,7 +85,7 @@ int main(void)
 		check[x][y] = true;
 		dfs(x, y);
 		check[x][y] = false;
-		ans += maximum;
+		ans += maximum-2;
 	}
 	cout << ans;
 	return 0;
