@@ -38,7 +38,7 @@ int main() {
     int tresurepos = 0;
     for (int tc = 1; tc <= K; tc++)
     {
-        int angle = 4, turnx = 0, turny = 0, price = 0, turnprice = 0;
+        int angle = 4, turnx = 5, turny = 5, price = 0, turnprice = 0;
         for (int i = 1; i <= 3; i++)
         {
             for (int j = 1; j <= 3; j++)
@@ -99,7 +99,7 @@ int main() {
                         }
                     }
                     
-                    if (tempprice >= price)
+                    if (tempprice > price)
                     {
                         price = tempprice;
                         angle = k;
@@ -108,7 +108,7 @@ int main() {
                     }
                     else if (tempprice == price)
                     {
-                        if (k > angle)
+                        if (k < angle)
                         {
                             price = tempprice;
                             angle = k;
