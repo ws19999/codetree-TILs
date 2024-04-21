@@ -45,7 +45,6 @@ int main(void)
 			{
 				int v, u, w;
 				cin >> v >> u >> w;
-				if (v == u)continue;
 				road[v].push_back(make_pair(u, w));
 				road[u].push_back(make_pair(v, w));
 			}
@@ -70,14 +69,14 @@ int main(void)
 			while (!pq.empty())
 			{
 				int id = -pq.top().second;
-				if (items[id].second == 0)
+				if (items[id].first == 0)
 				{
 					pq.pop();
 					continue;
 				}
 				find = true;
 				cout << id << "\n";
-                items.erase(id);
+				items.erase(id);
 				pq.pop();
 				break;
 			}
