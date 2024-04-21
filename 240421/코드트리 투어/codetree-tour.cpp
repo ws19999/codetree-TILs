@@ -89,7 +89,7 @@ int main(void)
 			dijkstra();
 			for (auto i : items)
 			{
-				if (dist[i.second.first] < INT_MAX && i.second.first - dist[i.second.second] >= 0)pq.push(make_pair(i.second.first - dist[i.second.second], -i.first));
+				if (dist[i.second.second] < INT_MAX && i.second.first - dist[i.second.second] >= 0)pq.push(make_pair(i.second.first - dist[i.second.second], -i.first));
 			}
 		}
 	}
