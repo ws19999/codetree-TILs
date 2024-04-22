@@ -7,6 +7,6 @@ for a in strings:
         finished=True
         break
     lists[ord(a)-ord('a')]+=1
-for i in range(ord('z')-ord('a')):
+for i in range(ord('z')-ord('a')+1):
     if(lists[i]>0):
         print(f"{chr(i+ord('a'))} : {lists[i]}")
