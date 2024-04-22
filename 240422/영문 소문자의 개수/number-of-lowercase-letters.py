@@ -1,6 +1,6 @@
 n=int(input())
 finished=False
-lists=[0 for _ in range(ord('z')-ord('a'))]
+lists=[0 for _ in range(ord('z')-ord('a')+1)]
 strings=list(input().split())
 for a in strings:
     if(ord(a)>ord('z') or ord(a)<ord('a')):
