@@ -8,7 +8,7 @@ while(True):
     if(str[pos]=='.'):
         ans+='.'
         pos+=1
-    if(pos+3<lens):
+    elif(pos+3<lens):
         if(str[pos]=='X' and str[pos+1]=='X' and str[pos+2]=='X' and str[pos+3]=='X'):
             ans+='aaaa'
             pos+=4
