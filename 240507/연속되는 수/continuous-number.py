@@ -17,6 +17,7 @@ for num in numbers:
             continue
         if(last==seq[i]):
             temp+=1
+            ans=max(ans,temp)
         else:
             ans=max(ans,temp)
             temp=1
