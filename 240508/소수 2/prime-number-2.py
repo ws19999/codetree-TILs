@@ -10,5 +10,5 @@ for i in range(2,n+1):
             temp+=i
             if(temp>n):
                 break
-            리스트[i]=1
+            리스트[temp]=1
 print(정답)
