@@ -5,8 +5,8 @@
 using namespace std;
 int n,m,k;
 int add_nutrient[10][10];
+int next_nutrient[10][10];
 priority_queue<tuple<int,int,int>> virus;
-deque<tuple<int,int,int>> dead;
 int nutrient[10][10];
 int dx[]={-1,-1,-1,0,1,1,1,0};
 int dy[]={-1,0,1,1,1,0,-1,-1};
@@ -29,7 +29,6 @@ int main() {
     }
     for(int tc=1;tc<=k;tc++)
     {
-        
         priority_queue<tuple<int,int,int>> nextvirus;
         while(!virus.empty())
         {
@@ -57,29 +56,16 @@ int main() {
         }
         else
         {
-            dead.push_back(make_tuple(x,y,age));
+            next_nutrient[x][y]+=age/2;
         }
-        }
-        while(!dead.empty())
-        {
-            int x=get<0>(dead.front());
-            int y=get<1>(dead.front());
-            int age=get<2>(dead.front());
-            dead.pop_front();
-            nutrient[x][y]+=age/2;
         }
         for(int i=0;i<n;i++)
         {
             for(int j=0;j<n;j++)
             {
-                nutrient[i][j]+=add_nutrient[i][j];
+                nutrient[i][j]+=add_nutrient[i][j]+next_nutrient[i][j];
             }
         }
-        //while(!nextvirus.empty())
-        //{
-            //virus.push(nextvirus.top());
-            //nextvirus.pop();
-        //}
         virus=nextvirus;
     }
     cout<<virus.size();
