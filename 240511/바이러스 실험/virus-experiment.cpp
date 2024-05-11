@@ -31,6 +31,7 @@ int main() {
     for(int tc=1;tc<=k;tc++)
     {
         deque<tuple<int,int,int>> nextvirus;
+        int mins=0;
         for(int i=0;i<m;i++)
         {
         int age=-get<0>(virus.front());
@@ -57,7 +58,9 @@ int main() {
         }
         else
         {
+            mins++;
             next_nutrient[x][y]+=age/2;
+        }
         }
         while(!nextvirus.empty())
         {
@@ -65,7 +68,7 @@ int main() {
             virus.push_front(nextvirus.front());
             nextvirus.pop_front();
         }
-        }
+        m-=mins;
         for(int i=0;i<n;i++)
         {
             for(int j=0;j<n;j++)
@@ -75,6 +78,6 @@ int main() {
             }
         }
     }
-    cout<<virus.size();
+    cout<<m;
     return 0;
 }
