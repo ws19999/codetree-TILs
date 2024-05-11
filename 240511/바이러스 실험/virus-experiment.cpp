@@ -11,6 +11,7 @@ int nutrient[10][10];
 int dx[]={-1,-1,-1,0,1,1,1,0};
 int dy[]={-1,0,1,1,1,0,-1,-1};
 int main() {    
+    ios::sync_with_stdio(0);cin.tie(0);cout.tie(0);
     cin>>n>>m>>k;
     for(int i=0;i<n;i++)
     {
