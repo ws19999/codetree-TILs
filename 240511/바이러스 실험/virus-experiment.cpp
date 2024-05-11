@@ -30,7 +30,7 @@ int main() {
     for(int tc=1;tc<=k;tc++)
     {
         priority_queue<tuple<int,int,int>> nextvirus;
-        int next_nutrient[10][10];
+        int next_nutrient[10][10]={0};
         while(!virus.empty())
         {
         int age=-get<0>(virus.top());
