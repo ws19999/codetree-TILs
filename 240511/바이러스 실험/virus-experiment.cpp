@@ -5,7 +5,7 @@
 using namespace std;
 int n,m,k;
 int add_nutrient[10][10];
-
+int next_nutrient[10][10]={0};
 priority_queue<tuple<int,int,int>> virus;
 int nutrient[10][10];
 int dx[]={-1,-1,-1,0,1,1,1,0};
@@ -19,6 +19,7 @@ int main() {
         {
             nutrient[i][j]=5;
             cin>>add_nutrient[i][j];
+            next_nutrient[i][j]=add_nutrient[i][j];
         }
     }
     for(int i=0;i<m;i++)
@@ -30,7 +31,6 @@ int main() {
     for(int tc=1;tc<=k;tc++)
     {
         priority_queue<tuple<int,int,int>> nextvirus;
-        int next_nutrient[10][10]={0};
         while(!virus.empty())
         {
         int age=-get<0>(virus.top());
@@ -64,7 +64,8 @@ int main() {
         {
             for(int j=0;j<n;j++)
             {
-                nutrient[i][j]+=add_nutrient[i][j]+next_nutrient[i][j];
+                nutrient[i][j]+=next_nutrient[i][j];
+                next_nutrient[i][j]=add_nutrient[i][j];
             }
         }
         virus=nextvirus;
