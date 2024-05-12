@@ -40,8 +40,9 @@ int main() {
         deque<pair<int,int>> dq;
         dq.push_back(make_pair(R.x,R.y));
         deque<int> sec;
+        deque<pair<int,int>>candidate;
         sec.push_back(0);
-        int s;
+        int s,stops=999999;
         while(!dq.empty())
         {
             int x=dq.front().first;
@@ -49,6 +50,7 @@ int main() {
             s=sec.front();
             dq.pop_front();
             sec.pop_front();
+            if(s>=stops)continue;
             for(int k=0;k<4;k++)
             {
                 int nextx=x+dx[k];
@@ -60,31 +62,44 @@ int main() {
                         timetable[nextx][nexty]=phase;
                         if(table[nextx][nexty]>0 && table[nextx][nexty]<R.lev)
                         {
-                            table[nextx][nexty]=0;
-                            possible=true;
-                            R.x=nextx;
-                            R.y=nexty;
-                            R.exp++;
-                            if(R.exp==R.lev)
+                            if(!possible)
                             {
-                                R.exp=0;
-                                R.lev++;
+                                possible=true;
+                                t+=s+1;
                             }
-                            break;
+                            stops=s+1;
+                            candidate.push_back(make_pair(nextx,nexty));
                         }
-                        else
+                        else if(!possible)
                         {
                             dq.push_back(make_pair(nextx,nexty));
                             sec.push_back(s+1);
                         }
                     }
                 }
-                if(possible)break;
             }
-            if(possible)break;
         }
         if(!possible)break;
-        t+=s+1;
+        int minx=100,miny=100;
+        while(!candidate.empty())
+        {
+            if(minx>candidate.front().first)
+            {
+                minx=candidate.front().first;
+                miny=candidate.front().second;
+            }
+            else if(minx==candidate.front().first && miny>candidate.front().second)miny=candidate.front().second;
+            candidate.pop_front();
+        }
+        R.x=minx;
+        R.y=miny;
+        R.exp++;
+        if(R.exp==R.lev)
+        {
+            R.exp=0;
+            R.lev++;
+        }
+        table[R.x][R.y]=0;
     }
     cout<<t;
     return 0;
