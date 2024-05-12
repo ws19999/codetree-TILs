@@ -18,20 +18,16 @@ int main() {
     {
         for(int j=0;j<N;j++)
         {
-            int info;
-            cin>>info;
-            if(info==9)
+            cin>>table[i][j];
+            if(table[i][j]==9)
             {
                 R.x=i;
                 R.y=j;
-            }
-            else if(info)
-            {
-                table[i][j]=info;
+                table[i][j]=0;
             }
         }
     }
-    int phase=0;
+    int phase=0,s;
     while(true)
     {
         bool possible=false;
@@ -40,9 +36,7 @@ int main() {
         deque<pair<int,int>> dq;
         dq.push_back(make_pair(R.x,R.y));
         deque<int> sec;
-        deque<pair<int,int>>candidate;
         sec.push_back(0);
-        int s,stops=999999;
         while(!dq.empty())
         {
             int x=dq.front().first;
@@ -50,7 +44,40 @@ int main() {
             s=sec.front();
             dq.pop_front();
             sec.pop_front();
-            if(s>=stops)continue;
+            if(table[x][y] && table[x][y]<R.lev)
+            {
+                possible=true;
+                t+=s;
+                int nextx=x;
+                int nexty=y;
+                while(!dq.empty())
+                {
+                    x=dq.front().first;
+                    y=dq.front().second;
+                    int news=sec.front();
+                    dq.pop_front();
+                    sec.pop_front();
+                    if(news==s && table[x][y] && table[x][y]<R.lev)
+                    {
+                        if(x<nextx)
+                        {
+                            nextx=x;
+                            nexty=y;
+                        }
+                        else if(x==nextx && y<nexty)nexty=y;
+                    }
+                    R.x=nextx;
+                    R.y=nexty;
+                    R.exp++;
+                    if(R.exp==R.lev)
+                    {
+                        R.exp=0;
+                        R.lev++;
+                    }
+                    table[R.x][R.y]=0;
+                }
+                break;
+            }
             for(int k=0;k<4;k++)
             {
                 int nextx=x+dx[k];
@@ -60,46 +87,13 @@ int main() {
                     if(timetable[nextx][nexty]<phase && table[nextx][nexty]<=R.lev)
                     {
                         timetable[nextx][nexty]=phase;
-                        if(table[nextx][nexty]>0 && table[nextx][nexty]<R.lev)
-                        {
-                            if(!possible)
-                            {
-                                possible=true;
-                                t+=s+1;
-                            }
-                            stops=s+1;
-                            candidate.push_back(make_pair(nextx,nexty));
-                        }
-                        else if(!possible)
-                        {
-                            dq.push_back(make_pair(nextx,nexty));
-                            sec.push_back(s+1);
-                        }
+                        dq.push_back(make_pair(nextx,nexty));
+                        sec.push_back(s+1);
                     }
                 }
             }
         }
         if(!possible)break;
-        int minx=100,miny=100;
-        while(!candidate.empty())
-        {
-            if(minx>candidate.front().first)
-            {
-                minx=candidate.front().first;
-                miny=candidate.front().second;
-            }
-            else if(minx==candidate.front().first && miny>candidate.front().second)miny=candidate.front().second;
-            candidate.pop_front();
-        }
-        R.x=minx;
-        R.y=miny;
-        R.exp++;
-        if(R.exp==R.lev)
-        {
-            R.exp=0;
-            R.lev++;
-        }
-        table[R.x][R.y]=0;
     }
     cout<<t;
     return 0;
