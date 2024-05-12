@@ -66,16 +66,16 @@ int main() {
                         }
                         else if(x==nextx && y<nexty)nexty=y;
                     }
-                    R.x=nextx;
-                    R.y=nexty;
-                    R.exp++;
-                    if(R.exp==R.lev)
-                    {
-                        R.exp=0;
-                        R.lev++;
-                    }
-                    table[R.x][R.y]=0;
                 }
+                R.x=nextx;
+                R.y=nexty;
+                R.exp++;
+                if(R.exp==R.lev)
+                {
+                    R.exp=0;
+                    R.lev++;
+                }
+                table[R.x][R.y]=0;
                 break;
             }
             for(int k=0;k<4;k++)
