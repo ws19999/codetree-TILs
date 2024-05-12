@@ -6,8 +6,8 @@ typedef struct robot
 {
     int lev=2,x,y,exp=0;
 }Robot;
-int dx[]={-1,1,0,0};
-int dy[]={0,0,-1,1};
+int dx[]={-1,0,1,0};
+int dy[]={0,-1,0,1};
 int timetable[20][20];
 int table[20][20];
 int main() {
