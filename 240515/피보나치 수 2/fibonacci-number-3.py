@@ -1,6 +1,5 @@
-a=0
-b=1
+s=[0,1]
 n=int(input())
 for i in range(n-1):
-    a,b=b,(a+b)%1000000007
-print(b)
+    s=[s[1],(sum(s))%1000000007]
+print(s[1])
