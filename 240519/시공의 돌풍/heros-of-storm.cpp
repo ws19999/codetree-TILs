@@ -20,7 +20,7 @@ void spread()
                 int nexty=j+dy[k];
                 if(nextx>=0 && nextx<n && nexty>=0 && nexty<m)
                 {
-                    if(nextx!=typhoon[0] && nextx!=typhoon[1])
+                    if((nextx!=typhoon[0] && nextx!=typhoon[1]) || nexty!=0)
                     {
                         nextroom[nextx][nexty]+=room[i][j]/5;
                         nextroom[i][j]-=room[i][j]/5;
