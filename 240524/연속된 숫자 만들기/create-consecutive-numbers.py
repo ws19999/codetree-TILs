@@ -1,0 +1,20 @@
+lists=list(map(int,input().split()))
+lists.sort()
+a=lists[1]-lists[0]
+b=lists[2]-lists[1]
+if(a>b):
+    a,b=b,a
+if(a==1):
+    if(b==1):
+        print('0\n0')
+    elif(b==2):
+        print('1\n1')
+    else:
+        print(2)
+        print(b-1)
+elif(a==2):
+    print(1)
+    print(b-1)
+else:
+    print(2)
+    print(b-1)
