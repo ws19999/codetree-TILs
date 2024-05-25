@@ -70,6 +70,7 @@ int main() {
                                 map[x][y].pop_back();
                                 map[x][y].push_back(v);
                             }
+                            else if (map[x][y].front().moved == j)map[x][y].push_back(v);
                         }
                         else map[x][y].push_back(v);
                     }
