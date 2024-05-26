@@ -1,15 +1,16 @@
+lists=[1 for _ in range(1000001)]
+lists[1]=0
+for i in range(2,1000001):
+    if(lists[i]==1):
+        j=i+i
+        while(j<=1000000):
+            lists[j]=0
+            j+=i
 a,b=map(int,input().split())
-if(a==1):
-    a+=1
+ans=0
 minn=0
-sums=0
 for i in range(b,a-1,-1):
-    prime=True
-    for j in range(2,i):
-        if(i%j==0):
-            prime=False
-            break
-    if(prime):
+    if(lists[i]):
+        ans+=i
         minn=i
-        sums+=i
-print(sums,minn)
+print(ans,minn)
