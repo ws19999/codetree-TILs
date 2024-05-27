@@ -22,6 +22,6 @@ for i in range(25):
                     break
             if(f):
                 cnt+=1
-        if(cnt==3):
+        if(cnt>=3):
             print(i+1)
             break
