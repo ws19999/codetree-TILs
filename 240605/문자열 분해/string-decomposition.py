@@ -20,8 +20,10 @@ while(True):
                 s=0
     if(pos):
         cnt+=1
-    else:
+    elif(s>0):
         cnt=-1
+        break
+    else:
         break
 if(cnt==0):
     print(-1)
