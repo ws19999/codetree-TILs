@@ -21,6 +21,7 @@ while(True):
     if(pos):
         cnt+=1
     else:
+        cnt=-1
         break
 if(cnt==0):
     print(-1)
