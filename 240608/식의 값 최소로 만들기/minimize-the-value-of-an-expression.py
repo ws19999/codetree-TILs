@@ -1,11 +1,11 @@
-lists=list(input().split('-'))
+line=list(input().split('-'))
 ans=0
-for i in range(len(lists)):
+for item in range(len(line)):
     num=0
-    temp=list(lists[i].split('+'))
+    temp=list(line[item].split('+'))
     for a in temp:
         num+=int(a)
-    if(i==0):
+    if(item==0):
         ans+=num
     else:
         ans-=num
