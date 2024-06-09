@@ -26,9 +26,11 @@ void cal(deque<pair<int,int>> dq)
         {
             int nextx=x+dx[i];
             int nexty=y+dy[i];
+            
             if(nextx>=0 && nextx<N && nexty>=0 && nexty<N)
             {
-                if(!city[nextx][nexty]==1 && !check[nextx][nexty])
+
+                if((city[nextx][nexty]==2 || city[nextx][nexty]==0) && !check[nextx][nexty])
                 {
                     check[nextx][nexty]=true;
                     dq.push_back(make_pair(nextx,nexty));
