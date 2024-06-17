@@ -1,13 +1,13 @@
 N=int(input())
-lists=[]
+사람들=[]
 for _ in range(N):
-    a,b=map(int,input().split())
-    lists.append((a,b))
-lists.sort()
-t=0
-for i in lists:
-    if i[0]<t:
-        t+=i[1]
+    도착시간,심사시간=map(int,input().split())
+    사람들.append((도착시간,심사시간))
+사람들.sort()
+시간=0
+for 사람 in 사람들:
+    if 사람[0]<시간:
+        시간+=사람[1]
     else:
-        t=i[0]+i[1]
-print(t)
+        시간=사람[0]+사람[1]
+print(시간)
