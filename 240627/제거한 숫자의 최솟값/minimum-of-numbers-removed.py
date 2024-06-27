@@ -1,0 +1,13 @@
+n=int(input())
+lists=list(map(int,input().split()))
+lists.sort()
+front=0
+back=n-1
+ans=0
+while(front<back):
+    ans=max(ans,lists[front]+lists[back])
+    front+=1
+    back-=1
+if(front==back):
+    ans=max(ans,front)
+print(ans)
