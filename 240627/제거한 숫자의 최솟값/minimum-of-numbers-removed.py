@@ -4,10 +4,12 @@ lists.sort()
 front=0
 back=n-1
 ans=0
+if(n%2==1):
+    back-=1
 while(front<back):
     ans=max(ans,lists[front]+lists[back])
     front+=1
     back-=1
-if(front==back):
-    ans=max(ans,front)
+if(n%2==1):
+    ans=max(ans,lists[n-1])
 print(ans)
