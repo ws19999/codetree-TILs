@@ -4,5 +4,6 @@ def recursive(num):
         return 2
     elif(num==2):
         return 4
-    else return (recursive(num-1)*recursive(num-2))%100
+    else:
+        return (recursive(num-1)*recursive(num-2))%100
 print(recursive(n))
