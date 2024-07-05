@@ -4,7 +4,7 @@ n,m=map(int,input().split())
 for _ in range(n):
     str=input()
     sets.add(str)
-for _ in range(n):
+for _ in range(m):
     str=input()
     if str in sets:
         정답+=1
