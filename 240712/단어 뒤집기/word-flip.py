@@ -1,6 +1,6 @@
 from collections import deque
 import sys
-str=sys.stdin.readline()
+str=input()
 rev=True
 temp=deque()
 for i in range(0,len(str)):
