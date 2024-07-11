@@ -12,7 +12,7 @@ for i in range(0,len(str)):
         for j in temp:
             print(j,end='')
         temp.clear()
-        print(' ',end='')
+        print('',end=' ')
     elif(str[i]=='<'):
         for j in temp:
             print(j,end='')
