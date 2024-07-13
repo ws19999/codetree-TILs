@@ -1,14 +1,10 @@
-최소=1000000
-def dfs(num,cnt):
-    global 최소
-    if(num==1):
-        최소=min(최소,cnt)
-        return
-    if(num%3==0):
-        dfs(num//3,cnt+1)
-    if(num%2==0):
-        dfs(num//2,cnt+1)
-    dfs(num-1,cnt+1)
 n=int(input())
-dfs(n,0)
-print(최소)
+table=[1000000 for _ in range(n+1)]
+table[1]=0
+for i in range(2,n+1):
+    if(i%3==0):
+        table[i]=min(table[i],table[i//3]+1)
+    if(i%2==0):
+        table[i]=min(table[i],table[i//2]+1)
+    table[i]=min(table[i],table[i-1]+1)
+print(table[n])
