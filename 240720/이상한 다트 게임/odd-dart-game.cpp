@@ -15,6 +15,7 @@ void dfs(int x,int y)
         int nextx=x+dx[k];
         int nexty=y+dy[k];
         if(nexty==-1)nexty=m-1;
+        if (nexty == m)nexty = 0;
         if(nextx>=0 and nextx<n and nexty>=0 and nexty<m)
         {
             if(temp==table[nextx][nexty])
@@ -71,7 +72,7 @@ int main() {
                 if(table[a][b]!=-INT_MAX)
                 {
                     dfs(a,b);
-                    changed=true;
+                    if(table[a][b]==-INT_MAX)changed=true;
                 }
             }
         }
