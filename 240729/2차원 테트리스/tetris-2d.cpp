@@ -182,7 +182,7 @@ int main() {
 						{
 							for (int k = 0; k < 4; k++)
 							{
-								yellow[k][j + 1] = yellow[k][j];
+								yellow[j+1][k] = yellow[j][k];
 							}
 							yellowscore[j + 1] = yellowscore[j];
 						}
@@ -294,6 +294,7 @@ int main() {
 			yellowscore[i] = 0;
 			redscore[i] = 0;
 		}
+		
 	}
 	int answer2 = 0;
 	for (int i = 0; i < 4; i++)
