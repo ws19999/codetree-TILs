@@ -24,7 +24,6 @@ int main() {
 			{
 				if (red[x][i + 1])
 				{
-					if (i == 1)break;
 					red[x][i] = 1;
 					redscore[i]++;
 					if (redscore[i] == 4)
@@ -47,7 +46,6 @@ int main() {
 			{
 				if (yellow[i + 1][y])
 				{
-					if (i == 1)break;
 					yellow[i][y] = 1;
 					yellowscore[i]++;
 					if (yellowscore[i] == 4)
@@ -73,7 +71,6 @@ int main() {
 			{
 				if (red[x][i + 1])
 				{
-					if (i == 1)break;
 					red[x][i] = 1;
 					red[x][i - 1] = 1;
 					redscore[i]++;
@@ -117,24 +114,16 @@ int main() {
 					break;
 				}
 			}
-			for (int j = 0; j < 2; j++)
-			{
-				for (int i = 0; i < 4; i++)
-				{
-					red[i][j] = 0;
-				}
-				redscore[j] = 0;
-			}
 			for (int i = 1; i < 6; i++)
 			{
 				if (yellow[i + 1][y] == 1 or yellow[i + 1][y + 1] == 1)
 				{
-					if (i == 1)continue;
 					yellow[i][y] = 1;
 					yellow[i][y + 1] = 1;
 					yellowscore[i] += 2;
 					if (yellowscore[i] == 4)
 					{
+						answer++;
 						for (int j = i - 1; j >= 1; j--)
 						{
 							for (int k = 0; k < 4; k++)
@@ -154,7 +143,6 @@ int main() {
 			{
 				if (yellow[i + 1][y])
 				{
-					if (i == 1)break;
 					yellow[i][y] = 1;
 					yellow[i - 1][y] = 1;
 					yellowscore[i]++;
@@ -198,19 +186,10 @@ int main() {
 					break;
 				}
 			}
-			for (int j = 0; j < 2; j++)
-			{
-				for (int i = 0; i < 4; i++)
-				{
-					yellow[j][i] = 0;
-				}
-				yellowscore[j] = 0;
-			}
 			for (int i = 1; i < 6; i++)
 			{
 				if (red[x][i + 1] == 1 or red[x + 1][i + 1] == 1)
 				{
-					if (i == 1)continue;
 					red[x][i] = 1;
 					red[x + 1][i] = 1;
 					redscore[i] += 2;
@@ -229,6 +208,75 @@ int main() {
 					break;
 				}
 			}
+		}
+		
+		int cnt = 0;
+		
+		if (redscore[1])
+		{
+			cnt++;
+			if (redscore[0])cnt++;
+		}
+		if (cnt == 1)
+		{
+			for (int j = 4; j >= 0; j--)
+			{
+				for (int i = 0; i < 4; i++)
+				{
+					red[i][j+1] = red[i][j];
+				}
+				redscore[j + 1] = redscore[j];
+			}
+		}
+		else if (cnt == 2)
+		{
+			for (int j = 3; j >= 0; j--)
+			{
+				for (int i = 0; i < 4; i++)
+				{
+					red[i][j+2] = red[i][j];
+				}
+				redscore[j + 2] = redscore[j];
+			}
+		}
+		cnt = 0;
+		if (yellowscore[1])
+		{
+			cnt++;
+			if (yellowscore[0])cnt++;
+		}
+		if (cnt == 1)
+		{
+			for (int i = 4; i >=0; i--)
+			{
+				for (int j = 0; j < 4; j++)
+				{
+					yellow[i+1][j] = yellow[i][j];
+				}
+				yellowscore[i + 1] = redscore[i];
+			}
+		}
+		else if (cnt == 2)
+		{
+			for (int i = 3; i >=0; i--)
+			{
+				for (int j = 0; j < 4; j++)
+				{
+					yellow[i+2][j] = yellow[i][j];
+				}
+				yellowscore[i + 2] = yellowscore[i];
+			}
+			
+		}
+		for (int i = 0; i < 2; i++)
+		{
+			for (int j = 0; j < 4; j++)
+			{
+				yellow[i][j] = 0;
+				red[j][i] = 0;
+			}
+			yellowscore[i] = 0;
+			redscore[i] = 0;
 		}
 	}
 	int answer2 = 0;
