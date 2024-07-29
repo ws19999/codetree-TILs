@@ -29,7 +29,7 @@ int main() {
 					if (redscore[i] == 4)
 					{
 						answer++;
-						for (int j = i - 1; j >= 1; j--)
+						for (int j = i - 1; j >= 0; j--)
 						{
 							for (int k = 0; k < 4; k++)
 							{
@@ -51,7 +51,7 @@ int main() {
 					if (yellowscore[i] == 4)
 					{
 						answer++;
-						for (int j = i - 1; j >= 1; j--)
+						for (int j = i - 1; j >= 0; j--)
 						{
 							for (int k = 0; k < 4; k++)
 							{
@@ -85,6 +85,14 @@ int main() {
 								red[k][j + 2] = red[k][j];
 							}
 							redscore[j + 2] = redscore[j];
+						}
+						for (int j = 1; j >= 0; j--)
+						{
+							for (int k = 0; k < 4; k++)
+							{
+								red[k][j] = 0;
+							}
+							redscore[j]=0;
 						}
 					}
 					else if (redscore[i] == 4)
@@ -124,7 +132,7 @@ int main() {
 					if (yellowscore[i] == 4)
 					{
 						answer++;
-						for (int j = i - 1; j >= 1; j--)
+						for (int j = i - 1; j >= 0; j--)
 						{
 							for (int k = 0; k < 4; k++)
 							{
@@ -157,6 +165,14 @@ int main() {
 								yellow[j + 2][k] = yellow[j][k];
 							}
 							yellowscore[j + 2] = yellowscore[j];
+						}
+						for (int j = 0; j < 2; j++)
+						{
+							for (int k = 0; k < 4; k++)
+							{
+								yellow[j][k] = 0;
+							}
+							yellowscore[j] = 0;
 						}
 					}
 					else if (yellowscore[i] == 4)
@@ -196,7 +212,7 @@ int main() {
 					if (redscore[i] == 4)
 					{
 						answer++;
-						for (int j = i - 1; j >= 1; j--)
+						for (int j = i - 1; j >= 0; j--)
 						{
 							for (int k = 0; k < 4; k++)
 							{
@@ -253,7 +269,7 @@ int main() {
 				{
 					yellow[i+1][j] = yellow[i][j];
 				}
-				yellowscore[i + 1] = redscore[i];
+				yellowscore[i + 1] = yellowscore[i];
 			}
 		}
 		else if (cnt == 2)
