@@ -9,7 +9,7 @@ typedef struct chess
     bool horse = true;
 }Chess;
 int answer = 0;
-void dfs(Chess map[4][4], vector<pair<int, int>> horses, int score)
+void dfs(vector<vector<Chess>> map, vector<pair<int, int>> horses, int score)
 {
     for (int i = 1; i <= 16; i++)
     {
@@ -61,7 +61,7 @@ void dfs(Chess map[4][4], vector<pair<int, int>> horses, int score)
 }
 int main() {
     ios::sync_with_stdio(0); cin.tie(0); cout.tie(0);
-    Chess map[4][4];
+    vector<vector<Chess>> map(4, vector<Chess>(4));
     vector<pair<int, int>> horses(17);
     for (int i = 0; i < 4; i++)
     {
