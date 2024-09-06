@@ -2,8 +2,7 @@ fun main()
 {
     val n=readLine()!!.toInt()
     var sums=0
-    var finished=false
-    val temp=readLine()!!.split(" ").map{it.toInt()}
+    val temp=readLine()!!.trim()?.split(" ").map{it.toInt()}
     for(i in 0..n-1)
     {
         sums+=temp[i]
