@@ -1,7 +1,7 @@
 fun main()
 {
     val n=readLine()!!.toInt()
-    val nums=readLine()!!.split(" ").map{it.toInt()}
+    val nums=readLine()!!.trim().split(" ").map{it.toInt()}
     val k=readLine()!!.toInt()
     var 약수=0
     var 배수=0
