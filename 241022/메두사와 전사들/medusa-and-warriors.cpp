@@ -89,11 +89,38 @@ void attack()
 			{
 				look = -1;
 				dir[k]+=village[x][y];
+				if (k % 2 == 1)
+				{
+					deque<pair<int, int>> dq;
+					dq.push_back(make_pair(x, y));
+					while (!dq.empty())
+					{
+						int nx = dq.front().first;
+						int ny = dq.front().second;
+						dq.pop_front();
+						for (int t = k - 1; t <= k + 1; t++)
+						{
+							int d = (t + 8) % 8;
+							int nextx = nx + dxx[t];
+							int nexty = ny + dyy[t];
+							if (nextx >= 0 and nextx < N and nexty >= 0 and nexty < N)
+							{
+								if (vil[nextx][nexty] == -2)
+								{
+									vil[nextx][nexty] = -1;
+									dq.push_back(make_pair(nextx, nexty));
+								}
+							}
+						}
+					}
+					break;
+				}
 			}
 			x += dxx[k];
 			y += dyy[k];
 		}
 	}
+	vil[sr][sc] = -1;
 	for (int k = 0; k < 8; k++)
 	{
 		deque<pair<int, int>> dq;
@@ -146,13 +173,15 @@ void attack()
 			}
 		}
 	}
-	vil[sr][sc] = -1;
 	rock = 0;
 	dists = 0;
 	attacks = 0;
-	for (int i = 1; i <= 7; i += 2)
+	dirr = 0;
+	deque<int> nums;
+	nums = { 7,3,5,1 };
+	for (auto i:nums)
 	{
-		if (rock <= dir[i] + dir[(i + 1)%8] + dir[(i + 2)%8] + dir[i + 8] + dir[(i + 9)%8+8])
+		if (rock < dir[i] + dir[(i + 1)%8] + dir[(i + 2)%8] + dir[i + 8] + dir[(i + 9)%8+8])
 		{
 			rock = dir[i] + dir[(i + 1) % 8] + dir[(i + 2) % 8] + dir[i + 8] + dir[(i + 9) % 8 + 8];
 			dirr = 4-(i+1)/2;
@@ -174,7 +203,6 @@ void move()
 			if (cur != dirr and cur != (dirr + 1) % 8 and cur != (dirr + 2) % 8 and cur != dirr + 8 and cur != (dirr + 9) % 8 + 8)
 			{
 				int d = move(x, y, 0);
-
 				if (d != -1)
 				{
 					village[x][y]--;
@@ -252,7 +280,7 @@ int main(void)
 		village[sr][sc] = 0;
 		attack();
 		move();
-		cout << dists << " " << rock << " " << attacks << "\n";
+		cout << dists << " " << rock << " " << attacks << "\n";	
 	}
 	return 0;
 }
