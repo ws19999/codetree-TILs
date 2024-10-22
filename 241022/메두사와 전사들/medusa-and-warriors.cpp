@@ -101,8 +101,8 @@ void attack()
 						for (int t = k - 1; t <= k + 1; t++)
 						{
 							int d = (t + 8) % 8;
-							int nextx = nx + dxx[t];
-							int nexty = ny + dyy[t];
+							int nextx = nx + dxx[d];
+							int nexty = ny + dyy[d];
 							if (nextx >= 0 and nextx < N and nexty >= 0 and nexty < N)
 							{
 								if (vil[nextx][nexty] == -2)
