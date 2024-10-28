@@ -13,5 +13,5 @@ fun main()
             sums+=nums[i]
         }
     }
-    print("${cnt} ${sums} ${String.format("%.1f",sums/cnt)}")
+    print("${cnt} ${sums} ${String.format("%.1f",sums.toDouble()/cnt.toDouble())}")
 }
