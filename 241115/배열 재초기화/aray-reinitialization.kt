@@ -4,7 +4,7 @@ fun main()
     var arr=Array(N){IntArray(N){0}}
     for(i in 0..N-1)
     {
-        var tmp=readLine()!!.split(" ").map{it.toInt()}.toIntArray()
+        var tmp=readLine()!!.trim().split(" ").map{it.toInt()}.toIntArray()
         arr[i]=tmp
     }
     for(i in 0..N-1)
