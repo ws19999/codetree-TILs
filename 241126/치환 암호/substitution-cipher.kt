@@ -1,7 +1,7 @@
 fun main()
 {
     val str=readLine()!!
-    val keys:MutableMap<Char,Char>
+    val keys:MutableMap<Char,Char> = mutableMapOf()
     val s=readLine()!!
     var c='a'
     for(i in s)
