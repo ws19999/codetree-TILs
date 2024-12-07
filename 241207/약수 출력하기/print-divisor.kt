@@ -10,10 +10,10 @@ fun main()
     {
         if(N%i==0) {
             bw.write("${i} ")
-            if(i!=N/i)arr.addFirst(N/i)
+            if(i!=N/i)arr.add(N/i)
         }
-
     }
+    arr.sort()
     for(i in arr)bw.write("${i} ")
     bw.close()
 }
