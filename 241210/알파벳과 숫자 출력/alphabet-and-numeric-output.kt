@@ -5,7 +5,7 @@ fun main()
     var num=1
     for(i in N downTo 1)
     {
-        for(j in 1..N)
+        for(j in 1..i)
         {
             print("$c ")
             c++
