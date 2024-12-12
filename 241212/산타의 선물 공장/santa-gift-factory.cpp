@@ -48,28 +48,20 @@ struct DoublyLinkedList {
         size--;
     }
     void splice_front_from(Node* start) {
-        if(!start || start == head) return;
+    if (!start || start == head) return;
 
-        Node* startPrev = start->prev;
-        if (startPrev) {
-            startPrev->next = nullptr;
-            tail = startPrev;
-        }
+    Node* oldHead = head;
+    Node* oldTail = tail;
+    Node* startPrev = start->prev;
+    startPrev->next = nullptr;
+    start->prev = nullptr;
 
-        Node* oldHead = head;
-        head = start;
-        head->prev = nullptr;
+    oldTail->next = oldHead;
+    oldHead->prev = oldTail;
 
-        Node* endNode = head;
-        while(endNode->next) endNode = endNode->next;
-
-        if(oldHead) {
-            oldHead->prev = endNode;
-            endNode->next = oldHead;
-        } else {
-            tail = endNode; 
-        }
-	}
+    head = start;       
+    tail = startPrev;   
+}
 
     void splice_all_back(DoublyLinkedList &other) {
         if(!other.head) return; 
