@@ -85,7 +85,8 @@ int weights[100000];
 
 int main(void) {
     ios::sync_with_stdio(0); cin.tie(0); cout.tie(0);
-    int q, n, m, w_max, answer = 0, r_id, f_id, b_num;
+    int q, n, m, w_max, r_id, f_id, b_num;
+    long long answer = 0;
     cin >> q;
     DoublyLinkedList belt[11];
     bool available[11] = { false };
