@@ -1,6 +1,6 @@
 #include <iostream>
 #include <vector>
-#include <map>
+#include <unordered_map>
 #include <tuple>
 using namespace std;
 pair<int, int> table[20][20];
@@ -8,7 +8,7 @@ int n, m, k;
 int dx[] = { 0,-1,1,0,0 };
 int dy[] = { 0,0,0,-1,1 };
 int dirs[401][5][4];
-map<int, tuple<int, int, int>> players;
+unordered_map<int, tuple<int, int, int>> players;
 void turn(int t) {
 	vector<int> erase;
 	for (auto player : players) {
