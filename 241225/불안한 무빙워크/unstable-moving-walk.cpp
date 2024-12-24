@@ -24,6 +24,7 @@ void second() {
 				people[i]++;
 				rail[people[i]]--;
 				if (rail[people[i]] == 0)zeros++;
+				continue;
 			}
 			else continue;
 		}
