@@ -6,6 +6,7 @@ int L, Q,초밥개수=0,사람수=0,이전시간=0;
 unordered_map<string, pair<int, int>> person;
 unordered_map<string, unordered_map<int, int>> sushi;
 void timewarp(int t) {
+    if(t==이전시간)return;
 	vector<string> leaving;
 	// t-이전시간>=L이면 다 먹기.
 	// 
