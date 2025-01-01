@@ -7,45 +7,15 @@ unordered_map<string, pair<int, int>> person;
 unordered_map<string, unordered_map<int, int>> sushi;
 void timewarp(int t) {
 	vector<string> leaving;
-	if (t == 이전시간) {
+	if (t - 이전시간 >= L) {
 		for (auto p : person) {
 			vector<int> leave;
 			for (auto i : sushi[p.first]) {
-				if (p.second.first != (i.first + t) % L)continue;
 				person[p.first].second -= i.second;
 				초밥개수 -= i.second;
-				sushi[p.first][i.first] = 0;
-				leave.push_back(i.first);
 				if (person[p.first].second <= 0)break;
 			}
-			for (auto i : leave) {
-				sushi[p.first].erase(i);
-			}
-			if (person[p.first].second == 0) {
-				leaving.push_back(p.first);
-				사람수--;
-			}
-		}
-	}
-	else if (t - 이전시간 >= L) {
-		for (auto p : person) {
-			vector<int> leave;
-			for (auto i : sushi[p.first]) {
-				//if (person[p.first].second < i.second) {
-					//sushi[p.first][i.first] -= person[p.first].second;
-					//초밥개수 -= person[p.first].second;
-					//person[p.first].second = 0;
-					//break;
-				//}
-				person[p.first].second -= i.second;
-				초밥개수 -= i.second;
-				sushi[p.first][i.first] = 0;
-				leave.push_back(i.first);
-				if (person[p.first].second <= 0)break;
-			}
-			for (auto i : leave) {
-				sushi[p.first].erase(i);
-			}
+			sushi[p.first].clear();
 			if (person[p.first].second == 0) {
 				leaving.push_back(p.first);
 				사람수--;
@@ -57,17 +27,11 @@ void timewarp(int t) {
 			vector<int> leave;
 			for (auto i : sushi[p.first]) {
 				if (((i.first + t) % L > (i.first + 이전시간) % L and p.second.first <= (i.first + t) % L and p.second.first > (i.first + 이전시간) % L) or ((i.first + t) % L < (i.first + 이전시간) % L and (p.second.first <= (i.first + t) % L or p.second.first > (i.first + 이전시간) % L))) {
-					//if (person[p.first].second < i.second) {
-						//sushi[p.first][i.first] -= person[p.first].second;
-						//초밥개수 -= person[p.first].second;
-						//person[p.first].second = 0;
-						//break;
-					//}
 					person[p.first].second -= i.second;
 					초밥개수 -= i.second;
 					sushi[p.first][i.first] = 0;
 					leave.push_back(i.first);
-					if (person[p.first].second <= 0)break;
+					if (person[p.first].second == 0)break;
 				}
 			}
 			for (auto i : leave) {
@@ -84,7 +48,6 @@ void timewarp(int t) {
 int main(void) {
 	ios::sync_with_stdio(0); cin.tie(0); cout.tie(0);
 	cin >> L >> Q;
-
 	for (int tc = 1; tc <= Q; tc++) {
 		int q, t = 0, x;
 		string name;
