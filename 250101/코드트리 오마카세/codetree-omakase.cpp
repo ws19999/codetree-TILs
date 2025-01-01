@@ -26,7 +26,7 @@ void timewarp(int t) {
 				초밥개수 -= i.second;
 				sushi[p.first][i.first] = 0;
 				leave.push_back(i.first);
-				if (person[p.first].second == 0)break;
+				if (person[p.first].second < 0)break;
 			}
 			for (auto i : leave) {
 				sushi[p.first].erase(i);
@@ -52,7 +52,7 @@ void timewarp(int t) {
 					초밥개수 -= i.second;
 					sushi[p.first][i.first] = 0;
 					leave.push_back(i.first);
-					if (person[p.first].second == 0)break;
+					if (person[p.first].second < 0)break;
 				}
 			}
 			for (auto i : leave) {
