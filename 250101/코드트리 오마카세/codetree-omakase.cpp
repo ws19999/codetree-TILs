@@ -69,15 +69,19 @@ int main(void) {
 		cin >> q;
 		if (q == 100) {
 			cin >> t >> x >> name;
+			timewarp(t-1);
 			sushi[name][((x - t) % L + L) % L]++;
 			초밥개수++;
+			이전시간=t-1;
 			timewarp(t);
 		}
 		else if (q == 200) {
 			int n;
 			cin >> t >> x >> name >> n;
+			timewarp(t-1);
 			person[name] = make_pair(x, n);
 			사람수++;
+			이전시간=t-1;
 			timewarp(t);
 		}
 		else if (q == 300) {
@@ -86,6 +90,7 @@ int main(void) {
 			cout << 사람수 << " " << 초밥개수 << "\n";
 		}
 		이전시간 = t;
+$0
 	}
 	return 0;
 }
