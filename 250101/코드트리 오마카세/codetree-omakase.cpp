@@ -16,12 +16,12 @@ void timewarp(int t) {
 		for (auto p : person) {
 			vector<int> leave;
 			for (auto i: sushi[p.first]) {
-				if (person[p.first].second < i.second) {
-					sushi[p.first][i.first] -= person[p.first].second;
-					초밥개수 -= person[p.first].second;
-					person[p.first].second = 0;
-					break;
-				}
+				//if (person[p.first].second < i.second) {
+					//sushi[p.first][i.first] -= person[p.first].second;
+					//초밥개수 -= person[p.first].second;
+					//person[p.first].second = 0;
+					//break;
+				//}
 				person[p.first].second -= i.second;
 				초밥개수 -= i.second;
 				sushi[p.first][i.first] = 0;
@@ -42,12 +42,12 @@ void timewarp(int t) {
 			vector<int> leave;
 			for (auto i : sushi[p.first]) {
 				if (((i.first + t) % L > (i.first + 이전시간) % L and p.second.first <= (i.first + t) % L and p.second.first > (i.first + 이전시간) % L) or ((i.first + t) % L < (i.first + 이전시간) % L and (p.second.first <= (i.first + t) % L or p.second.first > (i.first + 이전시간) % L))) {
-					if (person[p.first].second < i.second) {
-						sushi[p.first][i.first] -= person[p.first].second;
-						초밥개수 -= person[p.first].second;
-						person[p.first].second = 0;
-						break;
-					}
+					//if (person[p.first].second < i.second) {
+						//sushi[p.first][i.first] -= person[p.first].second;
+						//초밥개수 -= person[p.first].second;
+						//person[p.first].second = 0;
+						//break;
+					//}
 					person[p.first].second -= i.second;
 					초밥개수 -= i.second;
 					sushi[p.first][i.first] = 0;
