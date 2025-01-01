@@ -90,7 +90,6 @@ int main(void) {
 			cout << 사람수 << " " << 초밥개수 << "\n";
 		}
 		이전시간 = t;
-$0
 	}
 	return 0;
 }
