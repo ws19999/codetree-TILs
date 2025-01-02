@@ -82,8 +82,7 @@ int main(void) {
 				}
 				else break;
 			}
-			while (!채점기.empty()) {
-				if (pq.empty())break;
+			if(!채점기.empty() and !pq.empty()) {
 				int dnum = get<2>(pq.top());
 				urls[get<3>(pq.top())]=false;
 				int chae = -채점기.top();
@@ -93,7 +92,6 @@ int main(void) {
 				채점중도메인[dnum] = 1;
 				pq.pop();
 				task--;
-				break;
 			}
 		}
 		else if (q == 400) { //J_id가 비어있으면 패스. 아니면 종료하고 쉼.
