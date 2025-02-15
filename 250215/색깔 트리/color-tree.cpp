@@ -20,6 +20,7 @@ void add() {
 			break;
 		}
 		pos = table[pos].father;
+        depth++;
 	}
 	if (p) {
 		table[pid].children.push_back(mid);
