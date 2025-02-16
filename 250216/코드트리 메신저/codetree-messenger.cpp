@@ -21,7 +21,7 @@ int dfs(int depth, int num) {
     int ans = 0;
     if (depth && depth <= table[num].power)ans++;
     for (auto i : table[num].sons) {
-        if(table[i].enabled)ans+=dfs(depth + 1, i);
+        if (table[i].enabled)ans += dfs(depth + 1, i);
     }
     return ans;
 }
@@ -38,7 +38,8 @@ int main(void)
         }
         else if (q == 200) {
             cin >> c;
-            table[c].enabled = !table[c].enabled;
+            if (table[c].enabled)table[c].enabled = false;
+            else table[c].enabled = true;
         }
         else if (q == 300) {
             cin >> c;
@@ -49,8 +50,11 @@ int main(void)
             cin >> c1 >> c2;
             int f1 = table[c1].father;
             int f2 = table[c2].father;
-            for (int i = 0; i < 2; i++) {
+            if (f1 == f2)continue;
+            for (int i = 0; i < table[f1].sons.size(); i++) {
                 if (table[f1].sons[i] == c1)table[f1].sons[i] = c2;
+            }
+            for (int i = 0; i < table[f2].sons.size(); i++) {
                 if (table[f2].sons[i] == c2)table[f2].sons[i] = c1;
             }
             table[c1].father = f2;
