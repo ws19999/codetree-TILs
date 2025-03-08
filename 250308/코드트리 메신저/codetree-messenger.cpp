@@ -2,20 +2,19 @@
 #include <deque>
 using namespace std;
 struct node {
-	int father, noti[21] = { 0 },power=0;
+	int father, noti[20] = { 0 },power=0;
 	bool on = true;
 };
 node table[100001];
 void change(int c, int type) {
 	deque<int> dq;
-	int sz = 20;
-	for (int i = 0; i <= 20; i++)dq.push_back(table[c].noti[i]);
+	int sz = 19;
+	for (int i = 0; i <= 19; i++)dq.push_back(table[c].noti[i]);
 	while (table[c].on) {
 		dq.pop_front();
 		c = table[c].father;
 		if (c == -1)break;
 		sz--;
-		if (sz == -1)break;
 		for (int i = 0; i <= sz; i++) table[c].noti[i] += dq[i] * type;
 	}
 }
@@ -36,7 +35,7 @@ int main(void) {
 			for (int i = 1; i <= N; i++) {
 				int a;
 				cin >> a;
-				if (a > 20)a = 20;
+				if (a >= 20)a = 19;
 				table[i].noti[a] = 1;
 				table[i].power = a;
 			}
@@ -66,7 +65,7 @@ int main(void) {
 		else if (q == 300) {
 			int c, power;
 			cin >> c >> power;
-			if (power > 20)power = 20;
+			if (power >= 20)power = 19;
 			int pos = c;
 			int p = table[c].power;
 			table[c].noti[p]--;
@@ -104,7 +103,7 @@ int main(void) {
 		else if (q == 500) {
 			int c,ans=-1;
 			cin >> c;
-			for (int i = 0; i <= 20; i++)ans += table[c].noti[i];
+			for (int i = 0; i <= 19; i++)ans += table[c].noti[i];
 			cout << ans << "\n";
 		}
 	}
