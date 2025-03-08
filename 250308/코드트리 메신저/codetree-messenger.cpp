@@ -43,9 +43,8 @@ int main(void) {
 			for (int i = 1; i <= N; i++) {
 				int power = table[i].power;
 				int pos = i;
-				while (true) {
+				while (pos) {
 					pos = table[pos].father;
-					if (pos == -1)break;
 					--power;
 					if (power<0)break;
 					table[pos].noti[power]++;
@@ -67,6 +66,7 @@ int main(void) {
 		else if (q == 300) {
 			int c, power;
 			cin >> c >> power;
+			if (power > 20)power = 20;
 			int pos = c;
 			int p = table[c].power;
 			table[c].noti[p]--;
@@ -104,7 +104,6 @@ int main(void) {
 		else if (q == 500) {
 			int c,ans=-1;
 			cin >> c;
-			if (c == 0)ans = 0;
 			for (int i = 0; i <= 20; i++)ans += table[c].noti[i];
 			cout << ans << "\n";
 		}
