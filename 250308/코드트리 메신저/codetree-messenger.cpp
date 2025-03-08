@@ -104,6 +104,7 @@ int main(void) {
 		else if (q == 500) {
 			int c,ans=-1;
 			cin >> c;
+			if (c == 0)ans = 0;
 			for (int i = 0; i <= 20; i++)ans += table[c].noti[i];
 			cout << ans << "\n";
 		}
