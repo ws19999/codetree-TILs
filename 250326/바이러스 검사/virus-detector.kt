@@ -4,8 +4,8 @@ fun main()
     val bw=System.`out`.bufferedWriter()
     val N=br.readLine().toInt()
     var ans=N.toLong()
-    val guests=br.readLine().split(" ").map{it.toInt()}.toIntArray()
-    val (a,b)=br.readLine().split(" ").map{it.toInt()}
+    val guests=br.readLine().trim().split(" ").map{it.toInt()}.toIntArray()
+    val (a,b)=br.readLine().trim().split(" ").map{it.toInt()}
     for(i in 0..N-1){
         guests[i]-=a
         if(guests[i]>0){
