@@ -1,28 +1,16 @@
 #include <iostream>
-#include <vector>
-#include <deque>
-#include <tuple>
-#include <algorithm>
-#include <cmath>
-#include <queue>
 #include <climits>
-#include <unordered_map>
 #include <set>
 using namespace std;
 int house[30001];
 int main(void)
 {
     ios::sync_with_stdio(0); cin.tie(0); cout.tie(0);
-    int Q,minn=INT_MAX,maxx=INT_MIN,N,houses=0;
+    int Q,minn=INT_MAX,maxx=-INT_MAX,N,houses=0;
     cin >> Q;
     set<pair<int,int>> s;
-    set<int> dist;
+    multiset<int> dist;
     while (Q--) {
-        //cout << "거리" << "\n";
-        //for (auto i : dist) {
-            //cout << i << " ";
-            //cout << "\n";
-        //}
         int dir;
         cin >> dir;
         if (dir == 100) {
@@ -70,11 +58,9 @@ int main(void)
                 auto it = s.lower_bound(make_pair(p, 0));
                 it--;
                 int a = (*it).first;
-                //cout << a << "\n\n\n";
                 it++;
                 it++;
                 int b = (*it).first;
-                //cout << b << "\n\n\n";
                 dist.erase(b - a);
                 dist.insert(p - a);
                 dist.insert(b - p);
