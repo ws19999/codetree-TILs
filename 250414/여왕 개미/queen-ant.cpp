@@ -6,41 +6,41 @@ int house[30001];
 int main(void)
 {
     ios::sync_with_stdio(0); cin.tie(0); cout.tie(0);
-    int Q,minn=INT_MAX,maxx=-INT_MAX,N,houses=0;
+    int Q,minn=INT_MAX,maxx=-INT_MAX,N,housecnt=0;
     cin >> Q;
-    set<pair<int,int>> s;
+    set<int> s;
     multiset<int> dist;
     while (Q--) {
         int dir;
         cin >> dir;
         if (dir == 100) {
             cin >> N;
-            houses = N;
+            housecnt = N;
             for (int i = 1; i <= N; i++) {
                 int x;
                 cin >> x;
                 house[i] = x;
                 minn = min(x, minn);
                 maxx = max(x, maxx);
-                s.insert(make_pair(x, i));
+                s.insert(x);
             }
             auto it = s.begin();
             while (true) {
-                int a = (*it).first;
+                int a = (*it);
                 it++;
                 if (it == s.end())break;
-                int b = (*it).first;
+                int b = (*it);
                 dist.insert(b - a);
             }
         }
         else if (dir == 200) {
-            houses++;
+            housecnt++;
             N++;
             int p;
             cin >> p;
             house[N] = p;
-            s.insert(make_pair(p, N));
-            if (houses == 1) {
+            s.insert(p);
+            if (housecnt == 1) {
                 maxx = p;
                 minn = p;
                 continue;
@@ -55,12 +55,12 @@ int main(void)
                 minn = p;
             }
             else {
-                auto it = s.lower_bound(make_pair(p, 0));
+                auto it = s.lower_bound(p);
                 it--;
-                int a = (*it).first;
+                int a = (*it);
                 it++;
                 it++;
-                int b = (*it).first;
+                int b = (*it);
                 auto itt = dist.find(b - a);
                 dist.erase(itt);
                 dist.insert(p - a);
@@ -69,34 +69,33 @@ int main(void)
             
         }
         else if (dir == 300) {
-            houses--;
+            housecnt--;
             int q;
             cin >> q;
-            auto it = s.lower_bound(make_pair(house[q], 0));
+            auto it = s.lower_bound(house[q]);
             s.erase(it++);
-            if (houses == 0) {
+            if (housecnt == 0) {
                 maxx = -INT_MIN;
                 minn = INT_MAX;
                 continue;
             }
             if (house[q] == minn) {
                 it = s.begin();
-                auto itt = dist.find((*it).first - minn);
+                auto itt = dist.find((*it) - minn);
                 dist.erase(itt);
-                minn = (*(it)).first;
+                minn = (*(it));
             }
             else if (house[q] == maxx) {
                 it = s.end();
                 it--;
-                auto itt = dist.find(maxx - (*it).first);
+                auto itt = dist.find(maxx - (*it));
                 dist.erase(itt);
-                maxx = (*it).first;
+                maxx = (*it);
             }
             else {
-                
-                int b = (*it).first;
+                int b = (*it);
                 it--;
-                int a = (*it).first;
+                int a = (*it);
                 auto itt = dist.find(b - house[q]);
                 dist.erase(itt);
                 itt = dist.find(house[q] - a);
@@ -107,13 +106,13 @@ int main(void)
         else {
             int r;
             cin >> r;
-            if (r >= houses)cout << 0 << "\n";
+            if (r >= housecnt)cout << 0 << "\n";
             else if (r == 1) {
                 cout << maxx - minn << "\n";
             }
             else {
                 auto it = dist.begin();
-                int temp=houses - r;
+                int temp=housecnt - r;
                 int cnt = 0;
                 int ans = 0;
                 while (it != dist.end()) {
