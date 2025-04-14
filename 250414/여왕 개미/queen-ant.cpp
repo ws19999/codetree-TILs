@@ -36,7 +36,6 @@ int main(void)
         else if (dir == 200) {
             housecnt++;
             N++;
-            int p;
             cin >> p;
             house[N] = p;
             s.insert(p);
@@ -113,7 +112,7 @@ int main(void)
                 auto it = dist.begin();
                 int temp=housecnt - r;
                 int ans = 0;
-                for(int cnt=0;cnt<=temp;cnt++) {
+                for(int cnt=1;cnt<=temp;cnt++) {
                     ans += (*it);
                     it++;
                 }
