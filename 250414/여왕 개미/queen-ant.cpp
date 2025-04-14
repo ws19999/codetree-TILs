@@ -61,7 +61,8 @@ int main(void)
                 it++;
                 it++;
                 int b = (*it).first;
-                dist.erase(b - a);
+                auto itt = dist.find(b - a);
+                dist.erase(itt);
                 dist.insert(p - a);
                 dist.insert(b - p);
             }
