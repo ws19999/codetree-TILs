@@ -6,7 +6,7 @@ int house[30001];
 int main(void)
 {
     ios::sync_with_stdio(0); cin.tie(0); cout.tie(0);
-    int Q,minn=INT_MAX,maxx=-INT_MAX,N,housecnt=0;
+    int Q,minn=INT_MAX,maxx=-INT_MAX,N,housecnt=0,p,q;
     cin >> Q;
     set<int> s;
     multiset<int> dist;
@@ -70,7 +70,6 @@ int main(void)
         }
         else if (dir == 300) {
             housecnt--;
-            int q;
             cin >> q;
             auto it = s.lower_bound(house[q]);
             s.erase(it++);
@@ -113,13 +112,10 @@ int main(void)
             else {
                 auto it = dist.begin();
                 int temp=housecnt - r;
-                int cnt = 0;
                 int ans = 0;
-                while (it != dist.end()) {
-                    cnt++;
+                for(int cnt=0;cnt<=temp;cnt++) {
                     ans += (*it);
                     it++;
-                    if (cnt == temp)break;
                 }
                 cout << ans<<"\n";
             }
