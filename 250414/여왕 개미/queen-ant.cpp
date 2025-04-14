@@ -80,13 +80,15 @@ int main(void)
             }
             if (house[q] == minn) {
                 it = s.begin();
-                dist.erase((*it).first - minn);
+                auto itt = dist.find((*it).first - minn);
+                dist.erase(itt);
                 minn = (*(it)).first;
             }
             else if (house[q] == maxx) {
                 it = s.end();
                 it--;
-                dist.erase(maxx - (*it).first);
+                auto itt = dist.find(maxx - (*it).first);
+                dist.erase(itt);
                 maxx = (*it).first;
             }
             else {
@@ -94,8 +96,10 @@ int main(void)
                 int b = (*it).first;
                 it--;
                 int a = (*it).first;
-                dist.erase(b - house[q]);
-                dist.erase(house[q] - a);
+                auto itt = dist.find(b - house[q]);
+                dist.erase(itt);
+                itt = dist.find(house[q] - a);
+                dist.erase(itt);
                 dist.insert(b - a);
             }
         }
