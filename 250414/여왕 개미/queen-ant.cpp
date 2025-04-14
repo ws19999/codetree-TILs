@@ -1,5 +1,12 @@
 #include <iostream>
+#include <vector>
+#include <deque>
+#include <tuple>
+#include <algorithm>
+#include <cmath>
+#include <queue>
 #include <climits>
+#include <unordered_map>
 #include <set>
 using namespace std;
 int house[30001];
@@ -11,6 +18,11 @@ int main(void)
     set<pair<int,int>> s;
     set<int> dist;
     while (Q--) {
+        //cout << "거리" << "\n";
+        //for (auto i : dist) {
+            //cout << i << " ";
+            //cout << "\n";
+        //}
         int dir;
         cin >> dir;
         if (dir == 100) {
@@ -39,6 +51,7 @@ int main(void)
             int p;
             cin >> p;
             house[N] = p;
+            s.insert(make_pair(p, N));
             if (houses == 1) {
                 maxx = p;
                 minn = p;
@@ -55,23 +68,25 @@ int main(void)
             }
             else {
                 auto it = s.lower_bound(make_pair(p, 0));
+                it--;
                 int a = (*it).first;
+                //cout << a << "\n\n\n";
+                it++;
                 it++;
                 int b = (*it).first;
+                //cout << b << "\n\n\n";
                 dist.erase(b - a);
                 dist.insert(p - a);
                 dist.insert(b - p);
             }
-            s.insert(make_pair(p, N));
+            
         }
         else if (dir == 300) {
             houses--;
             int q;
             cin >> q;
             auto it = s.lower_bound(make_pair(house[q], 0));
-           
             s.erase(it++);
-           
             if (houses == 0) {
                 maxx = -INT_MIN;
                 minn = INT_MAX;
@@ -119,6 +134,7 @@ int main(void)
                 cout << ans<<"\n";
             }
         }
+       
     }
     return 0;
 }
